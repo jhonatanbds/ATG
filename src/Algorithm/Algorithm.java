@@ -1,27 +1,25 @@
-package Algorithm;
-
-import Graph.Graph;
-import Graph.Vertex;
+import Graph.Grafo;
+import Graph.Vertice;
 
 public class Algorithm {
 
-    String BFS(Graph graph, Vertex vertex) {
+    String BFS(Grafo graph, Vertice vertex) {
         return "";
     }
 
-    String DFS(Graph graph, Vertex vertex) {
+    String DFS(Grafo graph, Vertice vertex) {
         return "";
     }
 
-    boolean connected(Graph graph) {
+    boolean connected(Grafo graph) {
         return false;
     }
 
-    String shortestPath(Graph graph, Vertex head, Vertex tail) {
+    String shortestPath(Grafo graph, Vertice head, Vertice tail) {
         return "";
     }
 
-    String mst(Graph graph) {
+    String mst(Grafo graph) {
         return "";
     }
 }

@@ -1,30 +1,29 @@
-package Util;
 
-import Graph.Graph;
+import Graph.Grafo;
 
 public class Util {
 
-    Graph readGraph(String path) {
-        return new Graph();
+    Grafo readGrafo(String path) {
+        return new Grafo();
     }
 
-    Graph readWeightedGraph(String path) {
-        return new Graph();
+    Grafo readWeightedGrafo(String path) {
+        return new Grafo();
     }
 
-    int getVertexNumber(Graph graph) {
-        return graph.getVertexNumber();
+    int getVertexNumber(Grafo Grafo) {
+        return Grafo.getVertexNumber();
     }
 
-    int getEdgeNumber(Graph graph) {
-        return graph.getEdgeNumber();
+    int getEdgeNumber(Grafo Grafo) {
+        return Grafo.getEdgeNumber();
     }
 
-    float getMeanEdge(Graph graph) {
-        return graph.getMeanEdge();
+    float getMeanEdge(Grafo Grafo) {
+        return Grafo.getMeanEdge();
     }
 
-    String graphRepresentation (Graph graph, String type) {
+    String GrafoRepresentation (Grafo Grafo, String type) {
         return "";
     }
 }

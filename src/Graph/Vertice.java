@@ -1,17 +1,17 @@
 package Graph;
 
-public class Edge implements Comparable<Edge> {
+public class Vertice implements Comparable<Vertice> {
 	
 	private int id;
 	private boolean visitado = false;
-    private Edge pai;
+    private Vertice pai;
 	private int distancia;
 	
-	public Edge(int id){
+	public Vertice(int id){
 		this.id = id;
 	}
 	
-	public Edge(int id, int peso){
+	public Vertice(int id, int peso){
 		this.id = id;
 		this.distancia = peso;
 	}
@@ -24,11 +24,11 @@ public class Edge implements Comparable<Edge> {
 		this.distancia = distancia;
 	}
 	
-    public Edge getPai() {
+    public Vertice getPai() {
 		return pai;
 	}
 
-	public void setPai(Edge pai) {
+	public void setPai(Vertice pai) {
 		this.pai = pai;
 	}
 
@@ -52,11 +52,11 @@ public class Edge implements Comparable<Edge> {
 		this.id = id;
 	}
 	
-    public int compareTo(Edge Edge) {
-        if (this.id < Edge.id) {
+    public int compareTo(Vertice Vertice) {
+        if (this.id < Vertice.id) {
             return -1;
         }
-        if (this.id > Edge.id) {
+        if (this.id > Vertice.id) {
             return 1;
         }
         return 0;

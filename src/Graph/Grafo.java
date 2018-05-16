@@ -2,13 +2,15 @@ package Graph;
 
 import java.util.ArrayList;
 import java.util.List;
+import Graph.Vertice;
+import Graph.Arestas;
 
 
 
-public class Graph {
+public class Grafo {
 
    
-	private List<Vertices> vertices = new ArrayList<Vertices>();
+	private List<Vertice> vertice = new ArrayList<Vertice>();
 	private List<Arestas> arestas = new ArrayList<Arestas>();
 	private boolean pesos;
 	
@@ -16,7 +18,7 @@ public class Graph {
     private int edgeNumber; //numero de arestas
     private int vertexNumber;
 
-    public Graph() {
+    public Grafo() {
 
     }
 
