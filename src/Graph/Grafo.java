@@ -1,9 +1,19 @@
 package Graph;
 
+import java.util.ArrayList;
+import java.util.List;
+
+
+
 public class Graph {
 
-    private float meanEdge;
-    private int edgeNumber;
+   
+	private List<Vertices> vertices = new ArrayList<Vertices>();
+	private List<Arestas> arestas = new ArrayList<Arestas>();
+	private boolean pesos;
+	
+	private float meanEdge; //grau medio
+    private int edgeNumber; //numero de arestas
     private int vertexNumber;
 
     public Graph() {
