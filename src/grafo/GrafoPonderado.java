@@ -1,6 +1,13 @@
 package grafo;
 
+import java.util.List;
+import java.util.Set;
+
 public class GrafoPonderado extends GrafoBase {
+
+    public GrafoPonderado(Set<Vertice> vertices, List<Aresta> arestas) {
+        super(vertices, arestas);
+    }
 
     @Override
     protected String getALVertice1Model() {

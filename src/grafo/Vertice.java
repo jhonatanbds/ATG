@@ -1,65 +1,42 @@
 package grafo;
 
+import java.util.Objects;
+
 public class Vertice implements Comparable<Vertice> {
 	
-	private int id;
-	private boolean visitado = false;
-    private Vertice pai;
-	private int distancia;
-	
-	public Vertice(int id){
-		this.id = id;
-	}
-	
-	public Vertice(int id, int peso){
-		this.id = id;
-		this.distancia = peso;
-	}
-	
-	public int getDistancia() {
-		return distancia;
+	private int number;
+
+	public Vertice(int number) {
+		this.number = number;
 	}
 
-	public void setDistancia(int distancia) {
-		this.distancia = distancia;
-	}
-	
-    public Vertice getPai() {
-		return pai;
+	public int getNumber() {
+		return number;
 	}
 
-	public void setPai(Vertice pai) {
-		this.pai = pai;
+
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Vertice vertice = (Vertice) o;
+		return number == vertice.number;
 	}
 
-	public void visitar (){    
-        this.visitado = true;
-    }
-    
-	public boolean verificarVisita() {
-		return visitado;
+	@Override
+	public int hashCode() {
+
+		return Objects.hash(number);
 	}
 
-	public void setVisitado(boolean visitado) {
-		this.visitado = visitado;
+	public int compareTo(Vertice Vertice) {
+		if (this.number < Vertice.number) {
+			return -1;
+		}
+		if (this.number > Vertice.number) {
+			return 1;
+		}
+		return 0;
 	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-	
-    public int compareTo(Vertice Vertice) {
-        if (this.id < Vertice.id) {
-            return -1;
-        }
-        if (this.id > Vertice.id) {
-            return 1;
-        }
-        return 0;
-    }
-    
 }

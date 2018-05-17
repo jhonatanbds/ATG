@@ -1,22 +1,31 @@
 package grafo;
 
 public class Aresta {
+    private Vertice vertice1;
+    private Vertice vertice2;
+    private double peso;
 
-    Integer v1, v2, peso;
+    public Aresta(Vertice vertice1, Vertice vertice2, double peso) {
+        this.vertice1 = vertice1;
+        this.vertice2 = vertice2;
+        this.peso = peso;
+    }
 
-    public float getPeso() {
+    public Aresta(Vertice vertice1, Vertice vertice2) {
+        this.vertice1 = vertice1;
+        this.vertice2 = vertice2;
+        this.peso = 1;
+    }
+
+    public Vertice getVertice1() {
+        return vertice1;
+    }
+
+    public Vertice getVertice2() {
+        return vertice2;
+    }
+
+    public double getPeso() {
         return peso;
-    }
-
-    public Integer getTargetVertex() {
-        return 1;
-    }
-
-    public Integer getV1() {
-        return v1;
-    }
-
-    public Integer getV2() {
-        return v2;
     }
 }

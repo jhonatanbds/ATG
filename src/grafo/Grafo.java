@@ -1,6 +1,14 @@
 package grafo;
 
+
+import java.util.List;
+import java.util.Set;
+
 public class Grafo extends GrafoBase {
+
+    public Grafo(Set<Vertice> vertices, List<Aresta> arestas) {
+        super(vertices, arestas);
+    }
 
     @Override
     protected String getALVertice1Model() {
