@@ -1,7 +1,14 @@
 package grafo;
 
 
+import java.util.List;
+import java.util.Set;
+
 public class Grafo extends GrafoBase {
+
+    public Grafo(Set<Vertice> vertices, List<Aresta> arestas) {
+        super(vertices, arestas);
+    }
 
     @Override
     public String BFS(Grafo graph, Vertice vertex) {
@@ -26,5 +33,9 @@ public class Grafo extends GrafoBase {
     @Override
     public String mst(Grafo graph) {
         return null;
+    }
+
+    private void addAresta(){
+
     }
 }

@@ -1,19 +1,20 @@
 package grafo;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public abstract class GrafoBase {
 
-    private List<Vertice> vertice = new ArrayList<Vertice>();
+    private Set<Vertice> vertices = new HashSet<Vertice>();
     private List<Aresta> arestas = new ArrayList<Aresta>();
-    private boolean pesos;
 
     private float meanEdge; //grau medio
-    private int edgeNumber; //numero de arestas
-    private int vertexNumber;
 
-    public GrafoBase() {
+    public GrafoBase(Set<Vertice> vertices, List<Aresta> arestas) {
+        this.vertices = vertices;
+        this.arestas = arestas;
 
     }
 
@@ -22,11 +23,11 @@ public abstract class GrafoBase {
     }
 
     public int getEdgeNumber() {
-        return edgeNumber;
+        return arestas.size();
     }
 
     public int getVertexNumber() {
-        return vertexNumber;
+        return vertices.size();
     }
 
     abstract String BFS(Grafo graph, Vertice vertex);
