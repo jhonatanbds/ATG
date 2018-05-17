@@ -1,13 +1,12 @@
 package grafo;
 
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 public class GrafoPonderado extends GrafoBase {
 
-    public GrafoPonderado(Map<Integer, Set<Aresta>> Integers, List<Aresta> arestas) {
-        super(Integers, arestas);
+    public GrafoPonderado(Map<Integer, Set<Aresta>> Integers) {
+        super(Integers);
     }
 
     @Override
@@ -18,12 +17,6 @@ public class GrafoPonderado extends GrafoBase {
     @Override
     protected String getALVertice2Model(Aresta a) {
         return a.getVertice2() + "(" + a.getPeso() + ")";
-    }
-
-
-    @Override
-    protected String mapOperatorListRepresentation(Aresta e) {
-        return null;
     }
 
     @Override
