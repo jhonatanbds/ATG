@@ -35,6 +35,7 @@ public abstract class GrafoBase {
         return res;
     }
 
+
     public Map<Integer, Set<Aresta>> getVertices() {
         return vertices;
     }
@@ -128,6 +129,30 @@ public abstract class GrafoBase {
         return meanEdge;
     }
 
+    public String BFS(double[][] am, int source) {
+
+        Queue<Integer> fila = new LinkedList<>();
+        int[] visitado = new int[numVertices + 1];
+        int i, element;
+        visitado[source] = 1;
+        fila.add(source);
+        String res = "";
+
+        while (!fila.isEmpty()) {
+            element = fila.remove();
+            i = element;
+            res += i + "\n";
+            while (i <= numVertices) {
+                if (am[element][i] == 1 && visitado[i] == 0) {
+                    fila.add(i);
+                    visitado[i] = 1;
+                }
+                i++;
+            }
+        }
+        return res;
+    }
+
     public int getEdgeNumber() {
         ////////////////// TODO ///////////////////
         return 1;
@@ -138,8 +163,6 @@ public abstract class GrafoBase {
     }
 
     public abstract void addAresta(String aresta);
-
-    abstract String BFS(GrafoBase graph, Integer vertex);
 
     abstract String DFS(GrafoBase graph, Integer vertex);
 
