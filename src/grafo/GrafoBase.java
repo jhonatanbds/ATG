@@ -19,37 +19,56 @@ public abstract class GrafoBase {
     }
 
     String graphRepresentation (GrafoBase graph, String type) {
+        ArrayList<Integer> verticesTemp = new ArrayList<Integer>(this.vertices.keySet());
+        Collections.sort(verticesTemp);
         if (type.equals("AM")) {
-            ArrayList<Integer> verticesTemp = new ArrayList<Integer>(this.vertices.keySet());
-            Collections.sort(verticesTemp);
             return getAMString(verticesTemp, getAM(verticesTemp));
         } else if (type.equals("AL")) {
-            List<Integer> orderedVertexes = new ArrayList<Integer>(this.vertices.keySet());
-            Collections.sort(orderedVertexes);
-            StringBuilder list = new StringBuilder();
-
-            for (Integer v: orderedVertexes) {
-                String neighbors = vertices.get(v).stream()
-                        .sorted(Comparator.comparing(Aresta::getTargetVertex))
-                        .map(this::mapOperatorListRepresentation)
-                        .reduce((s1, s2) -> s1 + " " + s2).orElse("");
-                list.append(v).append(" - ").append(neighbors).append(LINE_SEPARATOR);
-            }
-            return list.toString();
+           return getALString(getAL(verticesTemp));
         } else {
             return "Tipo não definido";
         }
     }
 
+    protected String getALString(List<String> al) {
+        String res = "";
+        for (String s : al)
+            res += s + "\n";
+        return res;
+    }
+
+    protected List<String> getAL(ArrayList<Integer> verticesOrdenados) {
+        ArrayList<String> al = new ArrayList<>();
+        for (Integer v : verticesOrdenados) {
+            String adj = "";
+            adj += v + " - ";
+            ArrayList<Integer> vAdj = new ArrayList<>();
+            for (Aresta a : this.vertices.get(v)) {
+                if (a.getV1() != v)
+                    vAdj.add(a.getV1());
+                else
+                    vAdj.add(a.getV2());
+            }
+            Collections.sort(vAdj);
+            for (Integer ver : vAdj)
+                adj += ver + " ";
+            al.add(adj.trim());
+        }
+        return al;
+    }
+
+    protected abstract String getALVertice1Model();
+    protected abstract String getALVertice2Model();
+
     protected  float[][] getAM(ArrayList<Integer> verticesOrdenados) {
         float am[][] = new float[vertexNumber][vertexNumber];
 
         for(int i = 0; i < vertexNumber; i++) {
-            Integer currentVertex = verticesOrdenados.get(i);
-            Set<Aresta> connectedEdges = vertices.get(currentVertex);
-            for (Aresta edge : connectedEdges) {
-                Integer targetVertex = edge.getTargetVertex();
-                am[i][verticesOrdenados.indexOf(targetVertex)] = edge.getPeso();
+            Integer atual = verticesOrdenados.get(i);
+            Set<Aresta> arestas = vertices.get(atual);
+            for (Aresta a : arestas) {
+                Integer targetVertex = a.getTargetVertex();
+                am[i][verticesOrdenados.indexOf(targetVertex)] = a.getPeso();
             }
         }
         return am;
@@ -76,7 +95,7 @@ public abstract class GrafoBase {
         return matrixSB.toString();
     }
 
-    protected abstract String mapOperatorListRepresentation(E e);
+    protected abstract String mapOperatorListRepresentation(Aresta e);
 
     public float getMeanEdge() {
         return meanEdge;

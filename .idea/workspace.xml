@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3e0971cd-89ac-4ea8-b61d-13fedf58085f" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/grafo/Graph.java" afterPath="$PROJECT_DIR$/src/grafo/Grafo.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/grafo/ArestaPonderada.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/grafo/Aresta.java" afterPath="$PROJECT_DIR$/src/grafo/Aresta.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/grafo/Grafo.java" afterPath="$PROJECT_DIR$/src/grafo/Grafo.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/grafo/GrafoBase.java" afterPath="$PROJECT_DIR$/src/grafo/GrafoBase.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/grafo/GrafoPonderado.java" afterPath="$PROJECT_DIR$/src/grafo/GrafoPonderado.java" />
     </list>
@@ -27,14 +29,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GrafoBase.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GrafoBase.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/grafo/GrafoBase.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="33" column="36" lean-forward="true" selection-start-line="33" selection-start-column="36" selection-end-line="33" selection-end-column="36" />
+            <state relative-caret-position="612">
+              <caret line="60" column="43" lean-forward="false" selection-start-line="60" selection-start-column="43" selection-end-line="60" selection-end-column="43" />
               <folding>
-                <element signature="e#570#579#0" expanded="true" />
-                <element signature="e#813#822#0" expanded="true" />
+                <element signature="e#533#542#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Aresta.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/grafo/Aresta.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="216">
+              <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+              <folding>
+                <element signature="e#214#215#0" expanded="true" />
+                <element signature="e#239#240#0" expanded="true" />
+                <element signature="e#269#270#0" expanded="true" />
+                <element signature="e#294#295#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -43,19 +59,25 @@
       <file leaf-file-name="Grafo.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/grafo/Grafo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
-              <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+            <state relative-caret-position="108">
+              <caret line="6" column="8" lean-forward="false" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="20" />
               <folding>
-                <element signature="e#118#119#0" expanded="true" />
-                <element signature="e#145#146#0" expanded="true" />
-                <element signature="e#210#211#0" expanded="true" />
-                <element signature="e#237#238#0" expanded="true" />
-                <element signature="e#293#294#0" expanded="true" />
-                <element signature="e#321#322#0" expanded="true" />
-                <element signature="e#407#408#0" expanded="true" />
-                <element signature="e#434#435#0" expanded="true" />
-                <element signature="e#483#484#0" expanded="true" />
-                <element signature="e#510#511#0" expanded="true" />
+                <element signature="e#112#113#0" expanded="true" />
+                <element signature="e#139#140#0" expanded="true" />
+                <element signature="e#198#199#0" expanded="true" />
+                <element signature="e#225#226#0" expanded="true" />
+                <element signature="e#303#304#0" expanded="true" />
+                <element signature="e#330#331#0" expanded="true" />
+                <element signature="e#395#396#0" expanded="true" />
+                <element signature="e#422#423#0" expanded="true" />
+                <element signature="e#487#488#0" expanded="true" />
+                <element signature="e#514#515#0" expanded="true" />
+                <element signature="e#570#571#0" expanded="true" />
+                <element signature="e#598#599#0" expanded="true" />
+                <element signature="e#684#685#0" expanded="true" />
+                <element signature="e#711#712#0" expanded="true" />
+                <element signature="e#760#761#0" expanded="true" />
+                <element signature="e#787#788#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -64,19 +86,25 @@
       <file leaf-file-name="GrafoPonderado.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/grafo/GrafoPonderado.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="4" column="3" lean-forward="false" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
+            <state relative-caret-position="108">
+              <caret line="6" column="8" lean-forward="false" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="20" />
               <folding>
-                <element signature="e#127#128#0" expanded="true" />
-                <element signature="e#154#155#0" expanded="true" />
-                <element signature="e#219#220#0" expanded="true" />
-                <element signature="e#246#247#0" expanded="true" />
-                <element signature="e#302#303#0" expanded="true" />
-                <element signature="e#330#331#0" expanded="true" />
-                <element signature="e#416#417#0" expanded="true" />
-                <element signature="e#443#444#0" expanded="true" />
-                <element signature="e#492#493#0" expanded="true" />
-                <element signature="e#519#520#0" expanded="true" />
+                <element signature="e#121#122#0" expanded="true" />
+                <element signature="e#148#149#0" expanded="true" />
+                <element signature="e#207#208#0" expanded="true" />
+                <element signature="e#234#235#0" expanded="true" />
+                <element signature="e#312#313#0" expanded="true" />
+                <element signature="e#339#340#0" expanded="true" />
+                <element signature="e#404#405#0" expanded="true" />
+                <element signature="e#431#432#0" expanded="true" />
+                <element signature="e#496#497#0" expanded="true" />
+                <element signature="e#523#524#0" expanded="true" />
+                <element signature="e#579#580#0" expanded="true" />
+                <element signature="e#607#608#0" expanded="true" />
+                <element signature="e#693#694#0" expanded="true" />
+                <element signature="e#720#721#0" expanded="true" />
+                <element signature="e#769#770#0" expanded="true" />
+                <element signature="e#796#797#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -90,6 +118,11 @@
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>am</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -110,9 +143,10 @@
         <option value="$PROJECT_DIR$/src/Graph/Graph.java" />
         <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/grafo/Graph.java" />
+        <option value="$PROJECT_DIR$/src/grafo/Aresta.java" />
+        <option value="$PROJECT_DIR$/src/grafo/GrafoBase.java" />
         <option value="$PROJECT_DIR$/src/grafo/Grafo.java" />
         <option value="$PROJECT_DIR$/src/grafo/GrafoPonderado.java" />
-        <option value="$PROJECT_DIR$/src/grafo/GrafoBase.java" />
       </list>
     </option>
   </component>
@@ -288,12 +322,12 @@
       <option name="presentableId" value="Default" />
       <updated>1526410174165</updated>
       <workItem from="1526410179898" duration="1940000" />
-      <workItem from="1526562226076" duration="3379000" />
+      <workItem from="1526562226076" duration="6605000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5319000" />
+    <option name="totallyTimeSpent" value="8545000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
@@ -404,51 +438,83 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/grafo/Grafo.java">
+    <entry file="file://$PROJECT_DIR$/src/grafo/ArestaPonderada.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+        <state relative-caret-position="36">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/grafo/GrafoBase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="60" column="43" lean-forward="false" selection-start-line="60" selection-start-column="43" selection-end-line="60" selection-end-column="43" />
           <folding>
-            <element signature="e#118#119#0" expanded="true" />
-            <element signature="e#145#146#0" expanded="true" />
-            <element signature="e#210#211#0" expanded="true" />
-            <element signature="e#237#238#0" expanded="true" />
-            <element signature="e#293#294#0" expanded="true" />
-            <element signature="e#321#322#0" expanded="true" />
-            <element signature="e#407#408#0" expanded="true" />
-            <element signature="e#434#435#0" expanded="true" />
-            <element signature="e#483#484#0" expanded="true" />
-            <element signature="e#510#511#0" expanded="true" />
+            <element signature="e#533#542#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/grafo/GrafoPonderado.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="3" lean-forward="false" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
+        <state relative-caret-position="108">
+          <caret line="6" column="8" lean-forward="false" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="20" />
           <folding>
-            <element signature="e#127#128#0" expanded="true" />
-            <element signature="e#154#155#0" expanded="true" />
-            <element signature="e#219#220#0" expanded="true" />
-            <element signature="e#246#247#0" expanded="true" />
-            <element signature="e#302#303#0" expanded="true" />
-            <element signature="e#330#331#0" expanded="true" />
-            <element signature="e#416#417#0" expanded="true" />
-            <element signature="e#443#444#0" expanded="true" />
-            <element signature="e#492#493#0" expanded="true" />
-            <element signature="e#519#520#0" expanded="true" />
+            <element signature="e#121#122#0" expanded="true" />
+            <element signature="e#148#149#0" expanded="true" />
+            <element signature="e#207#208#0" expanded="true" />
+            <element signature="e#234#235#0" expanded="true" />
+            <element signature="e#312#313#0" expanded="true" />
+            <element signature="e#339#340#0" expanded="true" />
+            <element signature="e#404#405#0" expanded="true" />
+            <element signature="e#431#432#0" expanded="true" />
+            <element signature="e#496#497#0" expanded="true" />
+            <element signature="e#523#524#0" expanded="true" />
+            <element signature="e#579#580#0" expanded="true" />
+            <element signature="e#607#608#0" expanded="true" />
+            <element signature="e#693#694#0" expanded="true" />
+            <element signature="e#720#721#0" expanded="true" />
+            <element signature="e#769#770#0" expanded="true" />
+            <element signature="e#796#797#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/grafo/GrafoBase.java">
+    <entry file="file://$PROJECT_DIR$/src/grafo/Grafo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="33" column="36" lean-forward="true" selection-start-line="33" selection-start-column="36" selection-end-line="33" selection-end-column="36" />
+        <state relative-caret-position="108">
+          <caret line="6" column="8" lean-forward="false" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="20" />
           <folding>
-            <element signature="e#570#579#0" expanded="true" />
-            <element signature="e#813#822#0" expanded="true" />
+            <element signature="e#112#113#0" expanded="true" />
+            <element signature="e#139#140#0" expanded="true" />
+            <element signature="e#198#199#0" expanded="true" />
+            <element signature="e#225#226#0" expanded="true" />
+            <element signature="e#303#304#0" expanded="true" />
+            <element signature="e#330#331#0" expanded="true" />
+            <element signature="e#395#396#0" expanded="true" />
+            <element signature="e#422#423#0" expanded="true" />
+            <element signature="e#487#488#0" expanded="true" />
+            <element signature="e#514#515#0" expanded="true" />
+            <element signature="e#570#571#0" expanded="true" />
+            <element signature="e#598#599#0" expanded="true" />
+            <element signature="e#684#685#0" expanded="true" />
+            <element signature="e#711#712#0" expanded="true" />
+            <element signature="e#760#761#0" expanded="true" />
+            <element signature="e#787#788#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/grafo/Aresta.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+          <folding>
+            <element signature="e#214#215#0" expanded="true" />
+            <element signature="e#239#240#0" expanded="true" />
+            <element signature="e#269#270#0" expanded="true" />
+            <element signature="e#294#295#0" expanded="true" />
           </folding>
         </state>
       </provider>

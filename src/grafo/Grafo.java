@@ -3,6 +3,21 @@ package grafo;
 public class Grafo extends GrafoBase {
 
     @Override
+    protected String getALVertice1Model() {
+        return null;
+    }
+
+    @Override
+    protected String getALVertice2Model() {
+        return null;
+    }
+
+    @Override
+    protected String mapOperatorListRepresentation(Aresta e) {
+        return null;
+    }
+
+    @Override
     String BFS(GrafoBase graph, Vertice vertex) {
         return null;
     }
