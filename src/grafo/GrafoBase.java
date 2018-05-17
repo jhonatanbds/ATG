@@ -2,24 +2,21 @@ package grafo;
 
 import java.util.*;
 
-import static java.lang.Character.LINE_SEPARATOR;
-
 public abstract class GrafoBase {
 
     protected Map<Integer, Set<Aresta>> vertices;
     private List<Aresta> arestas = new ArrayList<Aresta>();
 
 
-    private float meanEdge; //grau medio
-    private int edgeNumber; //numero de arestas
-    private int vertexNumber;
+    private float meanEdge;
+    private int numVertices;
 
     public GrafoBase() {
         this.vertices = new HashMap<Integer, Set<Aresta>>();
 
     }
 
-    String graphRepresentation (GrafoBase graph, String type) {
+    public String graphRepresentation (String type) {
         ArrayList<Integer> verticesTemp = new ArrayList<Integer>(this.vertices.keySet());
         Collections.sort(verticesTemp);
         if (type.equals("AM")) {
@@ -58,12 +55,8 @@ public abstract class GrafoBase {
         this.meanEdge = meanEdge;
     }
 
-    public void setEdgeNumber(int edgeNumber) {
-        this.edgeNumber = edgeNumber;
-    }
-
     public void setVertexNumber(int vertexNumber) {
-        this.vertexNumber = vertexNumber;
+        this.numVertices = vertexNumber;
     }
 
     protected List<String> getAL(ArrayList<Integer> verticesOrdenados) {
@@ -71,28 +64,29 @@ public abstract class GrafoBase {
         for (Integer v : verticesOrdenados) {
             String adj = "";
             adj += v + " - ";
-            ArrayList<Integer> vAdj = new ArrayList<>();
+            ArrayList<String> vAdj = new ArrayList<>();
             for (Aresta a : this.vertices.get(v)) {
                 if (a.getVertice1() != v)
-                    vAdj.add(a.getVertice1());
+                    vAdj.add(getALVertice1Model(a));
                 else
-                    vAdj.add(a.getVertice2());
+                    vAdj.add(getALVertice2Model(a));
             }
             Collections.sort(vAdj);
-            for (Integer ver : vAdj)
+            for (String ver : vAdj)
                 adj += ver + " ";
             al.add(adj.trim());
         }
         return al;
     }
 
-    protected abstract String getALVertice1Model();
-    protected abstract String getALVertice2Model();
+    protected abstract String getALVertice1Model(Aresta a);
+
+    protected abstract String getALVertice2Model(Aresta a);
 
     protected  double[][] getAM(ArrayList<Integer> verticesOrdenados) {
-        double am[][] = new double[vertexNumber][vertexNumber];
+        double am[][] = new double[numVertices][numVertices];
 
-        for(int i = 0; i < vertexNumber; i++) {
+        for(int i = 0; i < numVertices; i++) {
             Integer atual = verticesOrdenados.get(i);
             Set<Aresta> arestas = vertices.get(atual);
             for (Aresta a : arestas) {
@@ -103,32 +97,30 @@ public abstract class GrafoBase {
         return am;
     }
     protected String getAMString(List<Integer> orderedVertexes, double[][] adjacencyMatrix) {
-        int vertexesNumber = vertexNumber;
-        StringBuilder matrixSB = new StringBuilder("  ");
+        String amString = " ";
 
-        for (int i = 0; i < vertexesNumber; i++) {
-            matrixSB.append(orderedVertexes.get(i));
-            boolean shouldAddSpace = vertexesNumber - i > 1;
-            if (shouldAddSpace) matrixSB.append(" ");
+        for (int i = 0; i < this.numVertices; i++) {
+            amString += orderedVertexes.get(i);
+            if (this.numVertices - i > 1)
+                amString += " ";
         }
-        matrixSB.append(LINE_SEPARATOR);
-        for(int i = 0; i < vertexesNumber; i++) {
-            StringBuilder line = new StringBuilder(orderedVertexes.get(i) + " ");
-            for(int j = 0; j < vertexesNumber; j++) {
-                line.append(Double.toString(adjacencyMatrix[i][j]));
-                boolean shouldAddSpace = vertexesNumber - j > 1;
-                if (shouldAddSpace) line.append(" ");
+        amString += "\n";
+
+        for(int i = 0; i < this.numVertices; i++) {
+            String linha = orderedVertexes.get(i) + " ";
+            for(int j = 0; j < this.numVertices; j++) {
+                linha += Double.toString(adjacencyMatrix[i][j]);
+                if (this.numVertices - j > 1)
+                    linha += " ";
             }
-            matrixSB.append(line).append(LINE_SEPARATOR);
+            amString += linha + "\n";
         }
-        return matrixSB.toString();
+        return amString;
     }
 
-    protected abstract String mapOperatorListRepresentation(Aresta e);
-
     public float getMeanEdge() {
-        float vertexNumber = getVertexNumber();
-        if (vertexNumber > 0) {
+        float numVertices = getVertexNumber();
+        if (numVertices > 0) {
         	meanEdge = getEdgeNumber() / getVertexNumber();
         }else {
         	meanEdge = 0;
@@ -137,7 +129,8 @@ public abstract class GrafoBase {
     }
 
     public int getEdgeNumber() {
-        return arestas.size();
+        ////////////////// TODO ///////////////////
+        return 1;
     }
 
     public int getVertexNumber() {
@@ -156,4 +149,7 @@ public abstract class GrafoBase {
 
     abstract String mst(GrafoBase graph);
 
+    public void setNumVertices(int numVertices) {
+        this.numVertices = numVertices;
+    }
 }

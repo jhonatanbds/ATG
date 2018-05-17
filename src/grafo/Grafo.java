@@ -1,7 +1,5 @@
 package grafo;
 
-
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -12,18 +10,13 @@ public class Grafo extends GrafoBase {
     }
 
     @Override
-    protected String getALVertice1Model() {
-        return null;
+    protected String getALVertice1Model(Aresta a) {
+        return a.getVertice1().toString();
     }
 
     @Override
-    protected String getALVertice2Model() {
-        return null;
-    }
-
-    @Override
-    protected String mapOperatorListRepresentation(Aresta e) {
-        return null;
+    protected String getALVertice2Model(Aresta a) {
+        return a.getVertice2().toString();
     }
 
     @Override

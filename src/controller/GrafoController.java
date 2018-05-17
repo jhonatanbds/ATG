@@ -47,6 +47,10 @@ public class GrafoController {
 
     }
 
+    String graphRepresentation (GrafoBase graph, String type) {
+        return graph.graphRepresentation(type);
+    }
+
     GrafoPonderado readWeightedGrafo(String path) {
         return null;
     }
