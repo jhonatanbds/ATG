@@ -6,8 +6,8 @@ import java.util.Set;
 
 public class GrafoPonderado extends GrafoBase {
 
-    public GrafoPonderado(Map<Integer, Set<Aresta>> Integers, List<Aresta> arestas) {
-        super(Integers, arestas);
+    public GrafoPonderado() {
+        super();
     }
 
     @Override
@@ -49,5 +49,10 @@ public class GrafoPonderado extends GrafoBase {
     @Override
     String mst(GrafoBase graph) {
         return null;
+    }
+
+    @Override
+    public void addAresta(String aresta) {
+
     }
 }

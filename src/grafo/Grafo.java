@@ -7,8 +7,8 @@ import java.util.Set;
 
 public class Grafo extends GrafoBase {
 
-    public Grafo(Map<Integer, Set<Aresta>> vertices, List<Aresta> arestas) {
-        super(vertices, arestas);
+    public Grafo() {
+        super();
     }
 
     @Override
@@ -50,5 +50,10 @@ public class Grafo extends GrafoBase {
     @Override
     String mst(GrafoBase graph) {
         return null;
+    }
+
+    @Override
+    public void addAresta(String aresta) {
+
     }
 }

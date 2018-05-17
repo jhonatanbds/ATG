@@ -8,15 +8,14 @@ public abstract class GrafoBase {
 
     protected Map<Integer, Set<Aresta>> vertices;
     private List<Aresta> arestas = new ArrayList<Aresta>();
-    private boolean pesos;
+
 
     private float meanEdge; //grau medio
     private int edgeNumber; //numero de arestas
     private int vertexNumber;
 
-    public GrafoBase(Map<Integer, Set<Aresta>> vertices, List<Aresta> arestas) {
-        this.vertices = vertices;
-        this.arestas = arestas;
+    public GrafoBase() {
+        this.vertices = new HashMap<Integer, Set<Aresta>>();
 
     }
 
@@ -39,7 +38,33 @@ public abstract class GrafoBase {
         return res;
     }
 
+    public Map<Integer, Set<Aresta>> getVertices() {
+        return vertices;
+    }
 
+    public void setVertices(Map<Integer, Set<Aresta>> vertices) {
+        this.vertices = vertices;
+    }
+
+    public List<Aresta> getArestas() {
+        return arestas;
+    }
+
+    public void setArestas(List<Aresta> arestas) {
+        this.arestas = arestas;
+    }
+
+    public void setMeanEdge(float meanEdge) {
+        this.meanEdge = meanEdge;
+    }
+
+    public void setEdgeNumber(int edgeNumber) {
+        this.edgeNumber = edgeNumber;
+    }
+
+    public void setVertexNumber(int vertexNumber) {
+        this.vertexNumber = vertexNumber;
+    }
 
     protected List<String> getAL(ArrayList<Integer> verticesOrdenados) {
         ArrayList<String> al = new ArrayList<>();
@@ -118,6 +143,8 @@ public abstract class GrafoBase {
     public int getVertexNumber() {
         return vertices.size();
     }
+
+    public abstract void addAresta(String aresta);
 
     abstract String BFS(GrafoBase graph, Integer vertex);
 

@@ -1,24 +1,42 @@
 package controller;
 
+import grafo.Aresta;
 import grafo.Grafo;
+import grafo.GrafoBase;
 import grafo.GrafoPonderado;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 public class GrafoController {
 
     Grafo readGrafo(String path) {
 
+
+        return null;
+    }
+
+    GrafoBase createGrafo(String path, boolean ponderado){
         try {
             FileReader fileReader = new FileReader(path);
             BufferedReader buffer = new BufferedReader(fileReader);
 
             Integer vertices = Integer.parseInt(buffer.readLine());
 
+            GrafoBase newGraph;
+
+            if(ponderado){
+                newGraph = new GrafoPonderado();
+            } else {
+                newGraph = new Grafo();
+            }
+
             for (int i = 0; i < vertices ; i++) {
                 String aresta = buffer.readLine();
-
+                newGraph.addAresta(aresta);
             }
 
         } catch (java.io.IOException e) {
@@ -26,6 +44,7 @@ public class GrafoController {
         }
 
         return null;
+
     }
 
     GrafoPonderado readWeightedGrafo(String path) {
