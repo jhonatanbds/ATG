@@ -87,6 +87,9 @@ public abstract class GrafoBase {
     protected  double[][] getAM(ArrayList<Integer> verticesOrdenados) {
         double am[][] = new double[numVertices][numVertices];
 
+        for (double[] l : am)
+            Arrays.fill(l, 0);
+
         for(int i = 0; i < numVertices; i++) {
             Integer atual = verticesOrdenados.get(i);
             Set<Aresta> arestas = vertices.get(atual);
@@ -145,7 +148,7 @@ public abstract class GrafoBase {
             i = element;
             res += i + "\n";
             while (i <= numVertices) {
-                if (am[element][i] == 1 && visitado[i] == 0) {
+                if (am[element][i] != 0 && visitado[i] == 0) {
                     fila.add(i);
                     visitado[i] = 1;
                 }
@@ -153,6 +156,33 @@ public abstract class GrafoBase {
             }
         }
         return res;
+    }
+
+    public boolean connected() {
+        ArrayList<Integer> verticesTemp = new ArrayList<Integer>(this.vertices.keySet());
+        Collections.sort(verticesTemp);
+        double[][] am = getAM(verticesTemp);
+        Queue<Integer> fila = new LinkedList<>();
+        int[] visitado = new int[numVertices + 1];
+        int i, element;
+        Integer source = vertices.keySet().iterator().next();
+        visitado[source] = 1;
+        fila.add(source);
+        while (!fila.isEmpty()) {
+            element = fila.remove();
+            i = element;
+            while (i <= numVertices) {
+                if (am[element][i] != 0 && visitado[i] == 0) {
+                    fila.add(i);
+                    visitado[i] = 1;
+                }
+                if (am[element][i] != 0 && visitado[i] != 0) {
+                    return true;
+                }
+                i++;
+            }
+        }
+        return false;
     }
 
     public int getEdgeNumber() {
