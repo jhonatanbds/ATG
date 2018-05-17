@@ -11,13 +11,13 @@ public class GrafoPonderado extends GrafoBase {
     }
 
     @Override
-    protected String getALVertice1Model() {
-        return null;
+    protected String getALVertice1Model(Aresta a) {
+        return a.getVertice1() + "(" + a.getPeso() + ")";
     }
 
     @Override
-    protected String getALVertice2Model() {
-        return null;
+    protected String getALVertice2Model(Aresta a) {
+        return a.getVertice2() + "(" + a.getPeso() + ")";
     }
 
 

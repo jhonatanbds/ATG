@@ -1,6 +1,7 @@
 package controller;
 
 import grafo.Grafo;
+import grafo.GrafoBase;
 import grafo.GrafoPonderado;
 
 import java.io.BufferedReader;
@@ -26,6 +27,10 @@ public class GrafoController {
         }
 
         return null;
+    }
+
+    String graphRepresentation (GrafoBase graph, String type) {
+        return graph.graphRepresentation(type);
     }
 
     GrafoPonderado readWeightedGrafo(String path) {

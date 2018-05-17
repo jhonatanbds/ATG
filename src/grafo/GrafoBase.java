@@ -20,7 +20,7 @@ public abstract class GrafoBase {
 
     }
 
-    String graphRepresentation (GrafoBase graph, String type) {
+    public String graphRepresentation (String type) {
         ArrayList<Integer> verticesTemp = new ArrayList<Integer>(this.vertices.keySet());
         Collections.sort(verticesTemp);
         if (type.equals("AM")) {
@@ -39,30 +39,29 @@ public abstract class GrafoBase {
         return res;
     }
 
-
-
     protected List<String> getAL(ArrayList<Integer> verticesOrdenados) {
         ArrayList<String> al = new ArrayList<>();
         for (Integer v : verticesOrdenados) {
             String adj = "";
             adj += v + " - ";
-            ArrayList<Integer> vAdj = new ArrayList<>();
+            ArrayList<String> vAdj = new ArrayList<>();
             for (Aresta a : this.vertices.get(v)) {
                 if (a.getVertice1() != v)
-                    vAdj.add(a.getVertice1());
+                    vAdj.add(getALVertice1Model(a));
                 else
-                    vAdj.add(a.getVertice2());
+                    vAdj.add(getALVertice2Model(a));
             }
             Collections.sort(vAdj);
-            for (Integer ver : vAdj)
+            for (String ver : vAdj)
                 adj += ver + " ";
             al.add(adj.trim());
         }
         return al;
     }
 
-    protected abstract String getALVertice1Model();
-    protected abstract String getALVertice2Model();
+    protected abstract String getALVertice1Model(Aresta a);
+
+    protected abstract String getALVertice2Model(Aresta a);
 
     protected  double[][] getAM(ArrayList<Integer> verticesOrdenados) {
         double am[][] = new double[vertexNumber][vertexNumber];
@@ -98,8 +97,6 @@ public abstract class GrafoBase {
         }
         return matrixSB.toString();
     }
-
-    protected abstract String mapOperatorListRepresentation(Aresta e);
 
     public float getMeanEdge() {
         float vertexNumber = getVertexNumber();
