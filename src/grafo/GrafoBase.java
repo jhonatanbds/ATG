@@ -17,8 +17,14 @@ public abstract class GrafoBase {
         this.arestas = arestas;
 
     }
-
+    
     public float getMeanEdge() {
+        float vertexNumber = getVertexNumber();
+        if (vertexNumber > 0) {
+        	meanEdge = getEdgeNumber() / getVertexNumber();
+        }else {
+        	meanEdge = 0;
+        }
         return meanEdge;
     }
 
