@@ -1,4 +1,4 @@
-package Graph;
+package grafo;
 
 public class Vertice implements Comparable<Vertice> {
 	
