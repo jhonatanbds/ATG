@@ -44,6 +44,8 @@ public abstract class GrafoBase {
         return res;
     }
 
+
+
     protected List<String> getAL(ArrayList<Integer> verticesOrdenados) {
         ArrayList<String> al = new ArrayList<>();
         for (Integer v : verticesOrdenados) {
