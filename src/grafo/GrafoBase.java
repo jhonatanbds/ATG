@@ -129,8 +129,10 @@ public abstract class GrafoBase {
         return meanEdge;
     }
 
-    public String BFS(double[][] am, int source) {
-
+    public String BFS(int source) {
+        ArrayList<Integer> verticesTemp = new ArrayList<Integer>(this.vertices.keySet());
+        Collections.sort(verticesTemp);
+        double[][] am = getAM(verticesTemp);
         Queue<Integer> fila = new LinkedList<>();
         int[] visitado = new int[numVertices + 1];
         int i, element;
