@@ -2,11 +2,12 @@ package grafo;
 
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class Grafo extends GrafoBase {
 
-    public Grafo(Set<Vertice> vertices, List<Aresta> arestas) {
+    public Grafo(Map<Integer, Set<Aresta>> vertices, List<Aresta> arestas) {
         super(vertices, arestas);
     }
 
@@ -26,14 +27,15 @@ public class Grafo extends GrafoBase {
     }
 
     @Override
-    String BFS(GrafoBase graph, Vertice vertex) {
+    String BFS(GrafoBase graph, Integer vertex) {
         return null;
     }
 
     @Override
-    String DFS(GrafoBase graph, Vertice vertex) {
+    String DFS(GrafoBase graph, Integer vertex) {
         return null;
     }
+
 
     @Override
     boolean connected(GrafoBase graph) {
@@ -41,7 +43,7 @@ public class Grafo extends GrafoBase {
     }
 
     @Override
-    String shortestPath(GrafoBase graph, Vertice head, Vertice tail) {
+    String shortestPath(GrafoBase graph, Integer head, Integer tail) {
         return null;
     }
 

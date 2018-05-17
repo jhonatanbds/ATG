@@ -31,4 +31,40 @@ public class GrafoController {
     GrafoPonderado readWeightedGrafo(String path) {
         return null;
     }
+
+    String BFS(Grafo graph, Integer vertex) {
+        return "";
+    }
+
+    String DFS(Grafo graph, Integer vertex) {
+        return "";
+    }
+
+    boolean connected(Grafo graph) {
+        return false;
+    }
+
+    String shortestPath(Grafo graph, Integer head, Integer tail) {
+        return "";
+    }
+
+    String mst(Grafo graph) {
+        return "";
+    }
+
+    int getVertexNumber(Grafo Grafo) {
+        return Grafo.getVertexNumber();
+    }
+
+    int getEdgeNumber(Grafo Grafo) {
+        return Grafo.getEdgeNumber();
+    }
+
+    float getMeanEdge(Grafo Grafo) {
+        return Grafo.getMeanEdge();
+    }
+
+    String GrafoRepresentation (Grafo Grafo, String type) {
+        return "";
+    }
 }
