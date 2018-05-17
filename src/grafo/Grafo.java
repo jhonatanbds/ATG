@@ -1,6 +1,6 @@
 package grafo;
 
-public class GrafoPonderado extends GrafoBase {
+public class Grafo extends GrafoBase {
 
     @Override
     String BFS(GrafoBase graph, Vertice vertex) {

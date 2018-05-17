@@ -20,27 +20,41 @@ public abstract class GrafoBase {
 
     String graphRepresentation (GrafoBase graph, String type) {
         if (type.equals("AM")) {
+            ArrayList<Integer> verticesTemp = new ArrayList<Integer>(this.vertices.keySet());
+            Collections.sort(verticesTemp);
+            return getAMString(verticesTemp, getAM(verticesTemp));
+        } else if (type.equals("AL")) {
             List<Integer> orderedVertexes = new ArrayList<Integer>(this.vertices.keySet());
             Collections.sort(orderedVertexes);
-            int vertexesNumber = this.vertexNumber;
-            float adjacencyMatrix[][] = new float[vertexesNumber][vertexesNumber];
-            for(int i = 0; i < vertexesNumber; i++) {
-                Integer currentVertex = orderedVertexes.get(i);
-                Set<Aresta> connectedEdges = vertices.get(currentVertex);
-                for (Aresta edge : connectedEdges) {
-                    Integer targetVertex = edge.getTargetVertex();
-                    adjacencyMatrix[i][orderedVertexes.indexOf(targetVertex)] = edge.getPeso();
-                }
+            StringBuilder list = new StringBuilder();
+
+            for (Integer v: orderedVertexes) {
+                String neighbors = vertices.get(v).stream()
+                        .sorted(Comparator.comparing(Aresta::getTargetVertex))
+                        .map(this::mapOperatorListRepresentation)
+                        .reduce((s1, s2) -> s1 + " " + s2).orElse("");
+                list.append(v).append(" - ").append(neighbors).append(LINE_SEPARATOR);
             }
-            return getAdjacencyMatrixString(orderedVertexes, adjacencyMatrix);
-        } else if (type.equals("AL")) {
-            return "todo";
+            return list.toString();
         } else {
             return "Tipo não definido";
         }
     }
 
-    protected String getAdjacencyMatrixString(List<Integer> orderedVertexes, float[][] adjacencyMatrix) {
+    protected  float[][] getAM(ArrayList<Integer> verticesOrdenados) {
+        float am[][] = new float[vertexNumber][vertexNumber];
+
+        for(int i = 0; i < vertexNumber; i++) {
+            Integer currentVertex = verticesOrdenados.get(i);
+            Set<Aresta> connectedEdges = vertices.get(currentVertex);
+            for (Aresta edge : connectedEdges) {
+                Integer targetVertex = edge.getTargetVertex();
+                am[i][verticesOrdenados.indexOf(targetVertex)] = edge.getPeso();
+            }
+        }
+        return am;
+    }
+    protected String getAMString(List<Integer> orderedVertexes, float[][] adjacencyMatrix) {
         int vertexesNumber = vertexNumber;
         StringBuilder matrixSB = new StringBuilder("  ");
 
@@ -61,6 +75,8 @@ public abstract class GrafoBase {
         }
         return matrixSB.toString();
     }
+
+    protected abstract String mapOperatorListRepresentation(E e);
 
     public float getMeanEdge() {
         return meanEdge;
