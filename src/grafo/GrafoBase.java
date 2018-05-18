@@ -1,6 +1,7 @@
 package grafo;
 
 import java.util.*;
+import grafo.Prim;
 
 public abstract class GrafoBase {
 
@@ -202,9 +203,13 @@ public abstract class GrafoBase {
 
     abstract String shortestPath(GrafoBase graph, Integer head, Integer tail);
 
-    abstract String mst(GrafoBase graph);
-
-    public void setNumVertices(int numVertices) {
+    public String mst(GrafoBase graph, String source) {
+    	return Prim.arvoreGeradoraMinima (graph, source);
+    }
+    
+       public void setNumVertices(int numVertices) {
         this.numVertices = numVertices;
     }
+       
+ 
 }
