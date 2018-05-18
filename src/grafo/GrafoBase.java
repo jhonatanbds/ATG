@@ -161,7 +161,7 @@ public abstract class GrafoBase {
         return res;
     }
 
-    private int getNumVertices() {
+    public int getNumVertices() {
         return vertices.keySet().size();
     }
 
@@ -201,11 +201,11 @@ public abstract class GrafoBase {
     }
 
     public int getEdgeNumber() {
-        int total = 0;
+        Set<Aresta> set = new HashSet<>();
         for (Integer v : vertices.keySet())
             for (Aresta a : vertices.get(v))
-                total++;
-        return total;
+                set.add(a);
+        return set.size();
     }
 
     public int getVertexNumber() {

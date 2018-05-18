@@ -11,7 +11,7 @@ public class Main {
         GrafoBase grafo = controller.readGrafo("grafo.txt");
         System.out.println(grafo.graphRepresentation("AM"));
 
-        System.out.println(grafo.shortestPath(1, 2));
+        //System.out.println(grafo.shortestPath(1, 2));
 
     }
 }

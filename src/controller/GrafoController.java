@@ -77,7 +77,7 @@ public class GrafoController {
     }
 
     public int getVertexNumber(Grafo Grafo) {
-        return Grafo.getVertexNumber();
+        return Grafo.getNumVertices();
     }
 
     public int getEdgeNumber(Grafo Grafo) {
