@@ -9,7 +9,6 @@ public abstract class GrafoBase {
 
 
     private float meanEdge;
-    private int numVertices;
 
     public GrafoBase() {
         this.vertices = new HashMap<Integer, Set<Aresta>>();
@@ -56,10 +55,6 @@ public abstract class GrafoBase {
         this.meanEdge = meanEdge;
     }
 
-    public void setVertexNumber(int vertexNumber) {
-        this.numVertices = vertexNumber;
-    }
-
     protected List<String> getAL(ArrayList<Integer> verticesOrdenados) {
         ArrayList<String> al = new ArrayList<>();
         for (Integer v : verticesOrdenados) {
@@ -85,12 +80,12 @@ public abstract class GrafoBase {
     protected abstract String getALVertice2Model(Aresta a);
 
     protected  double[][] getAM(ArrayList<Integer> verticesOrdenados) {
-        double am[][] = new double[numVertices][numVertices];
+        double am[][] = new double[getNumVertices()][getNumVertices()];
 
         for (double[] l : am)
             Arrays.fill(l, 0);
 
-        for(int i = 0; i < numVertices; i++) {
+        for(int i = 0; i < getNumVertices(); i++) {
             Integer atual = verticesOrdenados.get(i);
             Set<Aresta> arestas = vertices.get(atual);
             for (Aresta a : arestas) {
@@ -103,18 +98,18 @@ public abstract class GrafoBase {
     protected String getAMString(List<Integer> orderedVertexes, double[][] adjacencyMatrix) {
         String amString = " ";
 
-        for (int i = 0; i < this.numVertices; i++) {
+        for (int i = 0; i < this.getNumVertices(); i++) {
             amString += orderedVertexes.get(i);
-            if (this.numVertices - i > 1)
+            if (this.getNumVertices() - i > 1)
                 amString += " ";
         }
         amString += "\n";
 
-        for(int i = 0; i < this.numVertices; i++) {
+        for(int i = 0; i < this.getNumVertices(); i++) {
             String linha = orderedVertexes.get(i) + " ";
-            for(int j = 0; j < this.numVertices; j++) {
+            for(int j = 0; j < this.getNumVertices(); j++) {
                 linha += Double.toString(adjacencyMatrix[i][j]);
-                if (this.numVertices - j > 1)
+                if (this.getNumVertices() - j > 1)
                     linha += " ";
             }
             amString += linha + "\n";
@@ -123,8 +118,7 @@ public abstract class GrafoBase {
     }
 
     public float getMeanEdge() {
-        float numVertices = getVertexNumber();
-        if (numVertices > 0) {
+        if (getNumVertices() > 0) {
         	meanEdge = getEdgeNumber() / getVertexNumber();
         }else {
         	meanEdge = 0;
@@ -158,13 +152,17 @@ public abstract class GrafoBase {
         }
         String res = "";
         for(Integer vertice : visitado.keySet()) {
-            res += (vertice.toString() + " - " + nivel.get(vertice).toString() + " ");
-            if(predecessor.get(vertice) == null)
-                res += ("-" + "\n");
-            else
-                res += predecessor.get(v).toString() + "\n";
+            res += (vertice.toString() + " - " + nivel.get(vertice).toString() + "\n");
+//            if(predecessor.get(vertice) == null)
+//                res += ("\n");
+////            else
+////                res += predecessor.get(v).toString() + "\n";
         }
         return res;
+    }
+
+    private int getNumVertices() {
+        return vertices.keySet().size();
     }
 
     public Set<Integer> getAdjacentVertexes(Integer v) {
@@ -180,7 +178,7 @@ public abstract class GrafoBase {
         Collections.sort(verticesTemp);
         double[][] am = getAM(verticesTemp);
         Queue<Integer> fila = new LinkedList<>();
-        int[] visitado = new int[numVertices + 1];
+        int[] visitado = new int[getNumVertices() + 1];
         int i, element;
         Integer source = vertices.keySet().iterator().next();
         visitado[source] = 1;
@@ -188,7 +186,7 @@ public abstract class GrafoBase {
         while (!fila.isEmpty()) {
             element = fila.remove();
             i = element;
-            while (i <= numVertices) {
+            while (i <= getNumVertices()) {
                 if (am[element][i] != 0 && visitado[i] == 0) {
                     fila.add(i);
                     visitado[i] = 1;
@@ -221,7 +219,7 @@ public abstract class GrafoBase {
         Collections.sort(verticesTemp);
         double[][] am = getAM(verticesTemp);
         Stack<Integer> pilha = new Stack<>();  // para o DFS usa-se umma pilha como auxiliar
-        int[] visitado = new int[numVertices + 1];
+        int[] visitado = new int[getNumVertices() + 1];
         int i, element;
         visitado[source] = 1;
         pilha.push(source);
@@ -230,7 +228,7 @@ public abstract class GrafoBase {
         while (!pilha.isEmpty()) {
             element = pilha.peek(); // parte-se do topo da pilha
             i = 0;
-            while (i <= numVertices) { // verifica-se se ha adjacentes nao-visitados
+            while (i <= getNumVertices()) { // verifica-se se ha adjacentes nao-visitados
                 if (am[element][i] != 0 && visitado[i] == 0) {
                     pilha.push(i);
                     visitado[i] = 1;
@@ -238,7 +236,7 @@ public abstract class GrafoBase {
                 }
                 i++;
             }
-            if (i == numVertices) // checou todos os possiveis vertices adjacentes e nao restou avanco em profundidade
+            if (i == getNumVertices()) // checou todos os possiveis vertices adjacentes e nao restou avanco em profundidade
             	res += pilha.pop() + "\n"; // remove da pilha e registra na saida
         }
         return res;
@@ -249,7 +247,7 @@ public abstract class GrafoBase {
         // Initialize min value
         int min = Integer.MAX_VALUE, min_index=-1;
 
-        for (int v = 0; v < this.numVertices; v++)
+        for (int v = 0; v < this.getNumVertices(); v++)
             if (sptSet[v] == false && dist[v] <= min)
             {
                 min = dist[v];
@@ -267,14 +265,14 @@ public abstract class GrafoBase {
         ArrayList<Integer> verticesTemp = new ArrayList<Integer>(this.vertices.keySet());
         double[][] am = getAM(verticesTemp);
 
-        boolean[] visited = new boolean[numVertices];
-        for( int i = 0; i < numVertices; i++){
+        boolean[] visited = new boolean[getNumVertices()];
+        for( int i = 0; i < getNumVertices(); i++){
             visited[i] = false; //inicializa o array com nenhum visitado
         }
         visited[head] = true;
 
 
-        double[] distances = new double[numVertices];
+        double[] distances = new double[getNumVertices()];
         distances[head] = 0; // distancia do vertice para si mesmo eh 0
 
         ArrayList<Integer> path = new ArrayList<Integer>();
@@ -283,8 +281,8 @@ public abstract class GrafoBase {
         int predecessor = head;
         while(predecessor != tail){
 
-            for( int i = 0; i < numVertices; i++){
-                if (am[predecessor][i] != 0){ //quando o peso na matriz de adjacencias nao eh nulo, ha uma aresta
+            for( int i = 0; i < getNumVertices(); i++){
+                if (am[predecessor][i] != 0.0){ //quando o peso na matriz de adjacencias nao eh nulo, ha uma aresta
                     distances[i] = am[predecessor][i]; // distancia atual do vertice é somada ao peso da nova aresta
                 }
                 else
@@ -293,7 +291,7 @@ public abstract class GrafoBase {
 
             int closestVertex = predecessor;
             double closestVertexDistance = Double.MIN_VALUE;
-            for( int j = 0; j < numVertices; j++){
+            for( int j = 0; j < getNumVertices(); j++){
                 if (!visited[j] && distances[j] < closestVertexDistance) {
                     closestVertex = j;
                     closestVertexDistance = distances[j];
@@ -370,10 +368,5 @@ public abstract class GrafoBase {
         }
         return arestaSelecionada;
     }
-    
-       public void setNumVertices(int numVertices) {
-        this.numVertices = numVertices;
-    }
-       
  
 }
