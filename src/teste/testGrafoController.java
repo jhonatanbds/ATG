@@ -130,7 +130,7 @@ public class testGrafoController {
 
 //exemplo 1 de saida  AM e AL
     @Test
-    public void testRepresentaçao() {
+    public void testRepresentacao2() {
         try {
             controle.readGraph(grafo1);
         } catch (Exception e) {
@@ -160,7 +160,7 @@ public class testGrafoController {
     }
 
     @Test
-    public void testRepresentaçaoErrada() {
+    public void testRepresentacaoErrada() {
         try {
             controle.readGraph(grafo1);
         } catch (Exception e) {
@@ -190,7 +190,7 @@ public class testGrafoController {
     }
     //exemplo 2 de saida AM e AL
     @Test
-    public void testRepresentaçao() {
+    public void testRepresentacao1() {
         try {
             controle.readGraph(grafo1);
         } catch (Exception e) {
