@@ -1,6 +1,7 @@
 package grafo;
 
 import java.util.*;
+import grafo.Prim;
 
 public abstract class GrafoBase {
 
@@ -196,15 +197,46 @@ public abstract class GrafoBase {
 
     public abstract void addAresta(String aresta);
 
-    abstract String DFS(GrafoBase graph, Integer vertex);
+    public String DFS(GrafoBase graph, Integer vertex) {
+        ArrayList<Integer> verticesTemp = new ArrayList<Integer>(this.vertices.keySet());
+        Collections.sort(verticesTemp);
+        double[][] am = getAM(verticesTemp);
+        Stack<Integer> pilha = new LinkedList<>();  // para o DFS usa-se umma pilha como auxiliar
+        int[] visitado = new int[numVertices + 1];
+        int i, element;
+        visitado[source] = 1;
+        pilha.push(source);
+        String res = "";
+
+        while (!pilha.isEmpty()) {
+            element = pilha.peek(); // parte-se do topo da pilha
+            i = 0;
+            while (i <= numVertices) { // verifica-se se ha adjacentes nao-visitados
+                if (am[element][i] != 0 && visitado[i] == 0) {
+                    pilha.push(i);
+                    visitado[i] = 1;
+                    break; //segue-se para proximo vertice em profundidade
+                }
+                i++;
+            }
+            if (i == numVertices) // checou todos os possiveis vertices adjacentes e nao restou avanco em profundidade
+            	res += pilha.pop() + "\n;" // remove da pilha e registra na saida
+        }
+        return res;
+    }
 
     abstract boolean connected(GrafoBase graph);
 
-    abstract String shortestPath(GrafoBase graph, Integer head, Integer tail);
+    public String shortestPath(GrafoBase graph, Integer head, Integer tail) ;
 
-    abstract String mst(GrafoBase graph);
 
-    public void setNumVertices(int numVertices) {
+    public String mst(GrafoBase graph, String source) {
+    	return Prim.arvoreGeradoraMinima (graph, source);
+    }
+    
+       public void setNumVertices(int numVertices) {
         this.numVertices = numVertices;
     }
+       
+ 
 }

@@ -13,20 +13,23 @@ import java.util.Set;
 
 public class GrafoController {
 
-    Grafo readGrafo(String path) {
+    public Grafo readGrafo(String path) {
 
-
-        return null;
+        return (Grafo) createGrafo(path, false);
     }
 
-    GrafoBase createGrafo(String path, boolean ponderado){
+    public GrafoPonderado readPonderedGrafo(String path){
+        return (GrafoPonderado) createGrafo(path, false);
+    }
+
+    private GrafoBase createGrafo(String path, boolean ponderado){
+        GrafoBase newGraph = null;
         try {
             FileReader fileReader = new FileReader(path);
             BufferedReader buffer = new BufferedReader(fileReader);
 
             Integer vertices = Integer.parseInt(buffer.readLine());
 
-            GrafoBase newGraph;
 
             if(ponderado){
                 newGraph = new GrafoPonderado();
@@ -39,11 +42,13 @@ public class GrafoController {
                 newGraph.addAresta(aresta);
             }
 
+            fileReader.close();
         } catch (java.io.IOException e) {
-            e.printStackTrace();
+            System.err.println("Error opening the file: " + e.getMessage());
+            throw new RuntimeException(e);
         }
 
-        return null;
+        return newGraph;
 
     }
 

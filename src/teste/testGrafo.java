@@ -11,7 +11,7 @@ public class testGrafo {
 
     @Test
     public void criandovertice () {
-        ;
+
         try {
             grafo.createVertex(1);
             grafo.createVertex(1);
