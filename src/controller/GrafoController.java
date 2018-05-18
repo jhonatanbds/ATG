@@ -52,43 +52,43 @@ public class GrafoController {
 
     }
 
-    String graphRepresentation (GrafoBase graph, String type) {
+    public String graphRepresentation (GrafoBase graph, String type) {
         return graph.graphRepresentation(type);
     }
 
-    String BFS(GrafoBase graph, Integer vertex) {
+    public String BFS(GrafoBase graph, Integer vertex) {
         return graph.BFS(vertex);
     }
 
-    String DFS(GrafoBase graph, Integer vertex) {
+    public String DFS(GrafoBase graph, Integer vertex) {
         return graph.DFS(vertex);
     }
 
-    boolean connected(GrafoBase graph) {
+    public boolean connected(GrafoBase graph) {
         return graph.connected();
     }
 
-    String shortestPath(GrafoBase graph, Integer head, Integer tail) {
+    public String shortestPath(GrafoBase graph, Integer head, Integer tail) {
         return graph.shortestPath(head, tail);
     }
 
-    String mst(GrafoBase graph) {
+    public String mst(GrafoBase graph) {
         return graph.mst();
     }
 
-    int getVertexNumber(Grafo Grafo) {
+    public int getVertexNumber(Grafo Grafo) {
         return Grafo.getVertexNumber();
     }
 
-    int getEdgeNumber(Grafo Grafo) {
+    public int getEdgeNumber(Grafo Grafo) {
         return Grafo.getEdgeNumber();
     }
 
-    float getMeanEdge(Grafo Grafo) {
+    public float getMeanEdge(Grafo Grafo) {
         return Grafo.getMeanEdge();
     }
 
-    String GrafoRepresentation (Grafo Grafo, String type) {
+    public String GrafoRepresentation (Grafo Grafo, String type) {
         return "";
     }
 }
