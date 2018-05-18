@@ -1,8 +1,6 @@
 package grafo;
 
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class Grafo extends GrafoBase {
 
@@ -42,6 +40,8 @@ public class Grafo extends GrafoBase {
         this.vertices.get(vertice1).add(aresta);
         this.vertices.get(vertice2).add(reverseAresta);
     }
+
+
 
     @Override
     public String toString() {

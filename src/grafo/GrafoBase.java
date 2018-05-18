@@ -1,9 +1,6 @@
 package grafo;
 
 import java.util.*;
-import java.util.stream.Collectors;
-
-import grafo.Prim;
 
 public abstract class GrafoBase {
 
@@ -311,8 +308,67 @@ public abstract class GrafoBase {
     }
 
 
-    public String mst(GrafoBase graph, String source) {
-    	return Prim.arvoreGeradoraMinima (graph, source);
+    public String mst() {
+    	return arvoreGeradoraMinima (this.vertices.keySet().iterator().next());
+    }
+
+    private String arvoreGeradoraMinima(Integer origem) {
+
+        if(this.connected() == false) {
+            new RuntimeException("Nao eh possivel realizar operacao!\nGrafo n�o � conexo.\n");
+        }
+
+
+        String caminho = "Prim " +origem + ":\n";
+
+        Set<Integer> vertexes = this.vertices.keySet();
+        List<Aresta> arestas = getArestas();
+
+        List<Integer> visitados = new ArrayList<Integer>();
+
+        Aresta arestaAtual = new Aresta();
+        Integer verticeAtual = origem;
+        int custoTotal = 0;
+
+
+        while (visitados.size() < vertexes.size()){
+
+            visitados.add(verticeAtual);
+            arestaAtual= percorreArestas(visitados, verticeAtual);
+
+            if(arestaAtual.getVertice2() == null)
+                break;
+
+            caminho += arestaAtual.getVertice1() + " " + arestaAtual.getVertice2() +" "+ arestaAtual.getPeso() + ",\n";  // FORMATAR A SAIDA AQUI
+
+            custoTotal += arestaAtual.getPeso();
+
+            verticeAtual = arestaAtual.getVertice2();
+        }
+
+        caminho += custoTotal;
+
+        return caminho + "\n";
+    }
+
+    private Aresta percorreArestas(List<Integer> visitados, Integer verticeAtual) {
+
+        Aresta arestaSelecionada = new Aresta();
+        int menorCusto = Integer.MAX_VALUE;
+
+        for (Integer visitado : visitados) {
+            for (Aresta aresta : this.arestas) {
+                if(Integer.toString(aresta.getVertice1()).equals(visitado)){
+                    if(!visitados.contains(Integer.toString(aresta.getVertice2()))){
+                        if(menorCusto > aresta.getPeso()){
+                            menorCusto = (int) aresta.getPeso();
+                            arestaSelecionada = aresta;
+                        }
+                    }
+                }
+            }
+        }
+        return arestaSelecionada;
     }
     
        public void setNumVertices(int numVertices) {

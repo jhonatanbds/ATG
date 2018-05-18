@@ -72,9 +72,9 @@ public class GrafoController {
         return graph.shortestPath(head, tail);
     }
 
-//    String mst(GrafoBase graph, Integer source) {
-//        return graph.mst(graph, source);
-//    }
+    String mst(GrafoBase graph) {
+        return graph.mst();
+    }
 
     int getVertexNumber(Grafo Grafo) {
         return Grafo.getVertexNumber();
