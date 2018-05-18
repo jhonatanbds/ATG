@@ -1,6 +1,8 @@
 package grafo;
 
 import java.util.*;
+import java.util.stream.Collectors;
+
 import grafo.Prim;
 
 public abstract class GrafoBase {
@@ -95,7 +97,7 @@ public abstract class GrafoBase {
             Integer atual = verticesOrdenados.get(i);
             Set<Aresta> arestas = vertices.get(atual);
             for (Aresta a : arestas) {
-                Integer targetVertex = a.getTargetVertex();
+                Integer targetVertex = a.verticeAlvo(atual);
                 am[i][verticesOrdenados.indexOf(targetVertex)] = a.getPeso();
             }
         }
@@ -133,30 +135,47 @@ public abstract class GrafoBase {
         return meanEdge;
     }
 
-    public String BFS(int source) {
-        ArrayList<Integer> verticesTemp = new ArrayList<Integer>(this.vertices.keySet());
-        Collections.sort(verticesTemp);
-        double[][] am = getAM(verticesTemp);
+    public String BFS(Integer v) {
         Queue<Integer> fila = new LinkedList<>();
-        int[] visitado = new int[numVertices + 1];
-        int i, element;
-        visitado[source] = 1;
-        fila.add(source);
-        String res = "";
+        Map<Integer, Boolean> visitado = new HashMap<>();
+        Map<Integer, Integer> predecessor = new HashMap<>();
+        Map<Integer, Integer> nivel = new HashMap<>();
 
-        while (!fila.isEmpty()) {
-            element = fila.remove();
-            i = element;
-            res += i + "\n";
-            while (i <= numVertices) {
-                if (am[element][i] != 0 && visitado[i] == 0) {
-                    fila.add(i);
-                    visitado[i] = 1;
+        for(Integer vertex : this.vertices.keySet()) {
+            visitado.put(vertex, false);
+        }
+        visitado.put(v, true);
+        predecessor.put(v, null);
+        nivel.put(v, 0);
+        fila.add(v);
+        while(!fila.isEmpty()){
+            Integer atual = fila.poll();
+            for(Integer adjacentVertex : getAdjacentVertexes(atual)){
+                if(!visitado.get(adjacentVertex)){
+                    visitado.put(adjacentVertex, true);
+                    predecessor.put(adjacentVertex, atual);
+                    nivel.put(adjacentVertex, nivel.get(atual) + 1);
+                    fila.add(adjacentVertex);
                 }
-                i++;
             }
         }
+        String res = "";
+        for(Integer vertice : visitado.keySet()) {
+            res += (vertice.toString() + " - " + nivel.get(vertice).toString() + " ");
+            if(predecessor.get(vertice) == null)
+                res += ("-" + "\n");
+            else
+                res += predecessor.get(v).toString() + "\n";
+        }
         return res;
+    }
+
+    public Set<Integer> getAdjacentVertexes(Integer v) {
+        HashSet<Integer> l = new HashSet<>();
+        for (Aresta a: vertices.get(v)) {
+            l.add(a.verticeAlvo(v));
+        }
+        return l;
     }
 
     public boolean connected() {
@@ -187,8 +206,11 @@ public abstract class GrafoBase {
     }
 
     public int getEdgeNumber() {
-        ////////////////// TODO ///////////////////
-        return 1;
+        int total = 0;
+        for (Integer v : vertices.keySet())
+            for (Aresta a : vertices.get(v))
+                total++;
+        return total;
     }
 
     public int getVertexNumber() {
@@ -225,7 +247,77 @@ public abstract class GrafoBase {
         return res;
     }
 
-    abstract boolean connected(GrafoBase graph);
+    int minDistance(int dist[], Boolean sptSet[])
+    {
+        // Initialize min value
+        int min = Integer.MAX_VALUE, min_index=-1;
+
+        for (int v = 0; v < this.numVertices; v++)
+            if (sptSet[v] == false && dist[v] <= min)
+            {
+                min = dist[v];
+                min_index = v;
+            }
+
+        return min_index;
+    }
+
+
+    void shortestPath(int src) {
+        ArrayList<Integer> verticesTemp = new ArrayList<Integer>(this.vertices.keySet());
+        Collections.sort(verticesTemp);
+        double[][] graph = getAM(verticesTemp);
+
+        int dist[] = new int[this.numVertices]; // The output array. dist[i] will hold
+        // the shortest distance from src to i
+
+        // sptSet[i] will true if vertex i is included in shortest
+        // path tree or shortest distance from src to i is finalized
+        Boolean sptSet[] = new Boolean[this.numVertices];
+
+        // Initialize all distances as INFINITE and stpSet[] as false
+        for (int i = 0; i < this.numVertices; i++)
+        {
+            dist[i] = Integer.MAX_VALUE;
+            sptSet[i] = false;
+        }
+
+        // Distance of source vertex from itself is always 0
+        dist[src] = 0;
+
+        // Find shortest path for all vertices
+        for (int count = 0; count < this.numVertices-1; count++) {
+            // Pick the minimum distance vertex from the set of vertices
+            // not yet processed. u is always equal to src in first
+            // iteration.
+            int u = minDistance(dist, sptSet);
+
+            // Mark the picked vertex as processed
+            sptSet[u] = true;
+
+            // Update dist value of the adjacent vertices of the
+            // picked vertex.
+            for (int v = 0; v < this.numVertices; v++)
+
+                // Update dist[v] only if is not in sptSet, there is an
+                // edge from u to v, and total weight of path from src to
+                // v through u is smaller than current value of dist[v]
+                if (!sptSet[v] && graph[u][v]!=0 &&
+                        dist[u] != Integer.MAX_VALUE &&
+                        dist[u]+graph[u][v] < dist[v])
+                    dist[v] = (int) (dist[u] + graph[u][v]);
+        }
+
+        // print the constructed distance array
+        printSolution(dist, this.numVertices);
+    }
+
+    void printSolution(int dist[], int n)
+    {
+        System.out.println("Vertex   Distance from Source");
+        for (int i = 0; i < this.numVertices; i++)
+            System.out.println(i+" tt "+dist[i]);
+    }
 
     public String shortestPath(GrafoBase graph, Integer head, Integer tail){
     	if (head == tail)
