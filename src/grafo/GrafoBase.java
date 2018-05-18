@@ -1,6 +1,8 @@
 package grafo;
 
 import java.util.*;
+import java.util.stream.Collectors;
+
 import grafo.Prim;
 
 public abstract class GrafoBase {
@@ -133,30 +135,47 @@ public abstract class GrafoBase {
         return meanEdge;
     }
 
-    public String BFS(int source) {
-        ArrayList<Integer> verticesTemp = new ArrayList<Integer>(this.vertices.keySet());
-        Collections.sort(verticesTemp);
-        double[][] am = getAM(verticesTemp);
+    public String BFS(Integer v) {
         Queue<Integer> fila = new LinkedList<>();
-        int[] visitado = new int[numVertices + 1];
-        int i, element;
-        visitado[source] = 1;
-        fila.add(source);
-        String res = "";
+        Map<Integer, Boolean> visitado = new HashMap<>();
+        Map<Integer, Integer> predecessor = new HashMap<>();
+        Map<Integer, Integer> nivel = new HashMap<>();
 
-        while (!fila.isEmpty()) {
-            element = fila.remove();
-            i = element;
-            res += i + " ";
-            while (i <= numVertices) {
-                if (am[element][i] != 0 && visitado[i] == 0) {
-                    fila.add(i);
-                    visitado[i] = 1;
+        for(Integer vertex : this.vertices.keySet()) {
+            visitado.put(vertex, false);
+        }
+        visitado.put(v, true);
+        predecessor.put(v, null);
+        nivel.put(v, 0);
+        fila.add(v);
+        while(!fila.isEmpty()){
+            Integer atual = fila.poll();
+            for(Integer adjacentVertex : getAdjacentVertexes(atual)){
+                if(!visitado.get(adjacentVertex)){
+                    visitado.put(adjacentVertex, true);
+                    predecessor.put(adjacentVertex, atual);
+                    nivel.put(adjacentVertex, nivel.get(atual) + 1);
+                    fila.add(adjacentVertex);
                 }
-                i++;
             }
         }
-        return res.trim();
+        String res = "";
+        for(Integer vertice : visitado.keySet()) {
+            res += (vertice.toString() + " - " + nivel.get(vertice).toString() + " ");
+            if(predecessor.get(vertice) == null)
+                res += ("-" + "\n");
+            else
+                res += predecessor.get(v).toString() + "\n";
+        }
+        return res;
+    }
+
+    public Set<Integer> getAdjacentVertexes(Integer v) {
+        HashSet<Integer> l = new HashSet<>();
+        for (Aresta a: vertices.get(v)) {
+            l.add(a.verticeAlvo(v));
+        }
+        return l;
     }
 
     public boolean connected() {
