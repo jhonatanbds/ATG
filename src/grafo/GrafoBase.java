@@ -197,11 +197,11 @@ public abstract class GrafoBase {
 
     public abstract void addAresta(String aresta);
 
-    public String DFS(GrafoBase graph, Integer vertex) {
+    public String DFS(Integer source) {
         ArrayList<Integer> verticesTemp = new ArrayList<Integer>(this.vertices.keySet());
         Collections.sort(verticesTemp);
         double[][] am = getAM(verticesTemp);
-        Stack<Integer> pilha = new LinkedList<>();  // para o DFS usa-se umma pilha como auxiliar
+        Stack<Integer> pilha = new Stack<>();  // para o DFS usa-se umma pilha como auxiliar
         int[] visitado = new int[numVertices + 1];
         int i, element;
         visitado[source] = 1;
@@ -220,14 +220,16 @@ public abstract class GrafoBase {
                 i++;
             }
             if (i == numVertices) // checou todos os possiveis vertices adjacentes e nao restou avanco em profundidade
-            	res += pilha.pop() + "\n;" // remove da pilha e registra na saida
+            	res += pilha.pop() + "\n"; // remove da pilha e registra na saida
         }
         return res;
     }
 
     abstract boolean connected(GrafoBase graph);
 
-    public String shortestPath(GrafoBase graph, Integer head, Integer tail) ;
+    public String shortestPath(GrafoBase graph, Integer head, Integer tail){
+    	return "";
+    }
 
 
     public String mst(GrafoBase graph, String source) {
