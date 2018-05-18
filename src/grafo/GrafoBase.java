@@ -228,7 +228,50 @@ public abstract class GrafoBase {
     abstract boolean connected(GrafoBase graph);
 
     public String shortestPath(GrafoBase graph, Integer head, Integer tail){
-    	return "";
+    	if (head == tail)
+    	    return head.toString();
+
+        ArrayList<Integer> verticesTemp = new ArrayList<Integer>(this.vertices.keySet());
+        double[][] am = getAM(verticesTemp);
+
+        boolean[] visited = new boolean[numVertices];
+        for( int i = 0; i < numVertices; i++){
+            visited[i] = false; //inicializa o array com nenhum visitado
+        }
+        visited[head] = true;
+
+
+        double[] distances = new double[numVertices];
+        distances[head] = 0; // distancia do vertice para si mesmo eh 0
+
+        ArrayList<Integer> path = new ArrayList<Integer>();
+        path.add(head);
+
+        int predecessor = head;
+        while(predecessor != tail){
+
+            for( int i = 0; i < numVertices; i++){
+                if (am[predecessor][i] != 0){ //quando o peso na matriz de adjacencias nao eh nulo, ha uma aresta
+                    distances[i] = am[predecessor][i]; // distancia atual do vertice é somada ao peso da nova aresta
+                }
+                else
+                    distances[i] = Double.MAX_VALUE; // quando nao eh nulo nao ha aresta ligando-os e o peso é tido como infinito
+            }
+
+            int closestVertex = predecessor;
+            double closestVertexDistance = Double.MIN_VALUE;
+            for( int j = 0; j < numVertices; j++){
+                if (!visited[j] && distances[j] < closestVertexDistance) {
+                    closestVertex = j;
+                    closestVertexDistance = distances[j];
+                }
+            }
+            predecessor = closestVertex; // o seguinte vertice escolhido eh decidido por euristica gulosa par ao maisproximo vertice ainda nao visitado
+            visited[closestVertex] = true;
+            path.add(closestVertex);
+        }
+
+    	return path.toString();
     }
 
 
