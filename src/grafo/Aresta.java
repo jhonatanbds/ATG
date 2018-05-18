@@ -17,7 +17,10 @@ public class Aresta {
         this.peso = 1;
     }
 
-    public Integer getVertice1() {
+    public Aresta() {
+	}
+
+	public Integer getVertice1() {
         return vertice1;
     }
 
