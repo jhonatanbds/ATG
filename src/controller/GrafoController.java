@@ -18,7 +18,7 @@ public class GrafoController {
         return (Grafo) createGrafo(path, false);
     }
 
-    public GrafoPonderado readPonderedGrafo(String path){
+    public GrafoPonderado readWeightedGrafo(String path){
         return (GrafoPonderado) createGrafo(path, false);
     }
 
@@ -56,29 +56,25 @@ public class GrafoController {
         return graph.graphRepresentation(type);
     }
 
-    GrafoPonderado readWeightedGrafo(String path) {
-        return null;
+    String BFS(GrafoBase graph, Integer vertex) {
+        return graph.BFS(vertex);
     }
 
-    String BFS(Grafo graph, Integer vertex) {
-        return "";
+    String DFS(GrafoBase graph, Integer vertex) {
+        return graph.DFS(vertex);
     }
 
-    String DFS(Grafo graph, Integer vertex) {
-        return "";
+    boolean connected(GrafoBase graph) {
+        return graph.connected();
     }
 
-    boolean connected(Grafo graph) {
-        return false;
+    String shortestPath(GrafoBase graph, Integer head, Integer tail) {
+        return graph.shortestPath(head, tail);
     }
 
-    String shortestPath(Grafo graph, Integer head, Integer tail) {
-        return "";
-    }
-
-    String mst(Grafo graph) {
-        return "";
-    }
+//    String mst(GrafoBase graph, Integer source) {
+//        return graph.mst(graph, source);
+//    }
 
     int getVertexNumber(Grafo Grafo) {
         return Grafo.getVertexNumber();
