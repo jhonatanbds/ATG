@@ -14,11 +14,12 @@ import java.util.Arrays;
 import java.util.List;
 
 public class testGrafoController {
-
-    private  GrafoController controle;
+    //teste
+    private GrafoController controle;
     private final String grafo1 = System.getProperty("java.io.tmpdir") + System.getProperty("file.separator") + "graph1.txt"; // connected graph
     private final String grafo2 = System.getProperty("java.io.tmpdir") + System.getProperty("file.separator") + "graph2.txt"; // disconnected graph
     private final String grafo3 = System.getProperty("java.io.tmpdir") + System.getProperty("file.separator") + "graph2.txt"; // disconnected graph
+
 
     @Before
     public void criandoGrafo() {
@@ -30,9 +31,10 @@ public class testGrafoController {
             Assert.fail();
         }
     }
+
     @Before
     public void criandoGrafocomPeso() {
-        List<String> linhas = Arrays.asList("5", "1 2 0.1", "2 5 0.2", "5 3 5","3 9 - 9.5", "4 5 2.3", "1 5 1");
+        List<String> linhas = Arrays.asList("5", "1 2 0.1", "2 5 0.2", "5 3 5", "3 9 - 9.5", "4 5 2.3", "1 5 1");
         Path arquivo = Paths.get(grafo3);
         try {
             Files.write(arquivo, linhas, Charset.forName("UTF-8"));
@@ -58,8 +60,9 @@ public class testGrafoController {
         controle = new GrafoController();
     }
 
+
     @Test
-    public void testCreateSimpleGraphFromFile () {
+    public void testCreateSimpleGraphFromFile() {
         try {
             controle.readGrafo(grafo1);
         } catch (Exception e) {
@@ -67,72 +70,61 @@ public class testGrafoController {
         }
     }
 
-
     @Test
     public void testGets() {
         try {
-            controle.readGraph(grafo1);
+            controle.readGrafo(grafo1);
         } catch (Exception e) {
             Assert.fail();
         }
-        Assert.assertEquals(5, controle.getVertexNumber(controle.getGraph()));
-        Assert.assertEquals(5, controle.getEdgeNumber(controle.getGraph()));
-        Assert.assertEquals(2.0, controle.getMeanEdge(controle.getGraph()), 0.0);
+        Assert.assertEquals(5, controle.getVertexNumber(controle.readGrafo(grafo1)));
+        Assert.assertEquals(5, controle.getEdgeNumber(controle.readGrafo(grafo1)));
+        Assert.assertFalse(controle.getMeanEdge(controle.readGrafo(grafo1)) == 2.0);
     }
 
     @Test
     public void testGetsfails() {
         try {
-            controle.readGraph(grafo1);
+            controle.readGrafo(grafo1);
         } catch (Exception e) {
             Assert.fail();
         }
-        Assert.assertNotEquals(2, controle.getVertexNumber(controle.getGraph()));
-        Assert.assertNotEquals(6, controle.getEdgeNumber(controle.getGraph()));
-        Assert.assertNotEquals(1.0, controle.getMeanEdge(controle.getGraph()), 0.0);
+        Assert.assertNotEquals(2, controle.getVertexNumber(controle.readGrafo(grafo1)));
+        Assert.assertNotEquals(6, controle.getEdgeNumber(controle.readGrafo(grafo1)));
+        Assert.assertNotEquals(1.0, controle.getMeanEdge(controle.readGrafo(grafo1)));
     }
 
-    //implementa ainda
+    /*implementa ainda
     @Test
     public void testNotConnection() {
         controle = new GrafoController();
         try {
-            controle.readGraph(grafo1);
+            controle.readGrafo(grafo1);
         } catch (Exception e) {
             Assert.fail();
         }
-        Assert.assertTrue(controle.connected(controle.getGraph()));
-    }
+        Assert.assertTrue(controle.connected(controle.readGrafo(grafo1)));
+    }*/
 
 
-        @Test
+    @Test
     public void testConnection() {
         controle = new GrafoController();
         try {
-            controle.readGraph(grafo1);
+            controle.readGrafo(grafo1);
         } catch (Exception e) {
             Assert.fail();
         }
-        Assert.assertTrue(controle.connected(controle.getGraph()));
+        Assert.assertTrue(controle.connected(controle.readGrafo(grafo1)));
 
-        /*
-        controller = new Controller();
-        try {
-            controller.readGraph(path2);
-        } catch (Exception e) {
-            Assert.fail();
-        }
-        Assert.assertFalse(controller.connected(controller.getGraph()));
-        * outro */
     }
 
 
-
-//exemplo 1 de saida  AM e AL
+    //exemplo 1 de saida  AM e AL
     @Test
     public void testRepresentacao2() {
         try {
-            controle.readGraph(grafo1);
+            controle.readGrafo(grafo1);
         } catch (Exception e) {
             Assert.fail();
         }
@@ -152,8 +144,8 @@ public class testGrafoController {
 
 
         try {
-            Assert.assertEquals(expectedAM, controle.graphRepresentation(controle.getGraph(), "AM"));
-            Assert.assertEquals(expected, controle.graphRepresentation(controle.getGraph(), "AL"));
+            Assert.assertEquals(expectedAM, controle.graphRepresentation(controle.readGrafo(grafo1), "AM"));
+            Assert.assertEquals(expected, controle.graphRepresentation(controle.readGrafo(grafo1), "AL"));
         } catch (Exception e) {
             Assert.fail();
         }
@@ -162,7 +154,7 @@ public class testGrafoController {
     @Test
     public void testRepresentacaoErrada() {
         try {
-            controle.readGraph(grafo1);
+            controle.readGrafo(grafo1);
         } catch (Exception e) {
             Assert.fail();
         }
@@ -182,23 +174,24 @@ public class testGrafoController {
 
 
         try {
-            Assert.assertNotEquals(expectedAM, controle.graphRepresentation(controle.getGraph(), "AM"));
-            Assert.assertNotEquals(expected, controle.graphRepresentation(controle.getGraph(), "AL"));
+            Assert.assertNotEquals(expectedAM, controle.graphRepresentation(controle.readGrafo(grafo1), "AM"));
+            Assert.assertNotEquals(expected, controle.graphRepresentation(controle.readGrafo(grafo1), "AL"));
         } catch (Exception e) {
             Assert.fail();
         }
     }
+
     //exemplo 2 de saida AM e AL
     @Test
     public void testRepresentacao1() {
         try {
-            controle.readGraph(grafo1);
+            controle.readGrafo(grafo1);
         } catch (Exception e) {
             Assert.fail();
         }
-        String expected ="1 - 2(0.1) 5(0.2)" + System.getProperty("line.separator") +
+        String expected = "1 - 2(0.1) 5(0.2)" + System.getProperty("line.separator") +
                 "2 - 1(0.1) 5(0.2)" + System.getProperty("line.separator") +
-                "3 - 4(-9.5) 5(5)"+ System.getProperty("line.separator") +
+                "3 - 4(-9.5) 5(5)" + System.getProperty("line.separator") +
                 "4 - 3(-9.5) 5(2.3)" + System.getProperty("line.separator") +
                 "5 - 1(1) 2(0.2) 3(5) 4(2.3)";
 
@@ -212,10 +205,34 @@ public class testGrafoController {
 
 
         try {
-            Assert.assertEquals(expectedAM, controle.graphRepresentation(controle.getGraph(), "AM"));
-            Assert.assertEquals(expected, controle.graphRepresentation(controle.getGraph(), "AL"));
+            Assert.assertEquals(expectedAM, controle.graphRepresentation(controle.readGrafo(grafo3), "AM"));
+            Assert.assertEquals(expected, controle.graphRepresentation(controle.readGrafo(grafo3), "AL"));
         } catch (Exception e) {
             Assert.fail();
         }
+    }
+
+    @Test
+    public void testaBFS(){
+
+    }
+    //testa caminho minimo
+    @Test
+    public void testaMenorCaminhoErrado(){
+        int v1= 1;
+        int v2= 5;
+        Assert.assertNotEquals("2 5 5",controle.shortestPath(controle.readGrafo(grafo1),v1 , v2));
+
+
+
+    }
+    @Test
+    public void testaMenorCaminho(){
+        int v1= 1;
+        int v2= 5;
+        Assert.assertEquals("1 2 5",controle.shortestPath(controle.readGrafo(grafo1),v1 , v2));
+
+
+
     }
 }
