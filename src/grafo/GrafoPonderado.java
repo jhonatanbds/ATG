@@ -1,8 +1,6 @@
 package grafo;
 
 import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
 
 public class GrafoPonderado extends GrafoBase {
 
@@ -20,30 +18,6 @@ public class GrafoPonderado extends GrafoBase {
         return a.getVertice2() + "(" + a.getPeso() + ")";
     }
 
-    @Override
-    String BFS(GrafoBase graph, Integer vertex) {
-        return null;
-    }
-
-    @Override
-    String DFS(GrafoBase graph, Integer vertex) {
-        return null;
-    }
-
-    @Override
-    boolean connected(GrafoBase graph) {
-        return false;
-    }
-
-    @Override
-    String shortestPath(GrafoBase graph, Integer head, Integer tail) {
-        return null;
-    }
-
-    @Override
-    String mst(GrafoBase graph) {
-        return null;
-    }
 
     @Override
     public void addAresta(String strAresta) {
@@ -66,4 +40,6 @@ public class GrafoPonderado extends GrafoBase {
         this.vertices.get(vertice1).add(aresta);
         this.vertices.get(vertice2).add(reverseAresta);
     }
+
+
 }

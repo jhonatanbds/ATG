@@ -32,7 +32,9 @@ public class Aresta {
         return peso;
     }
 
-    public Integer getTargetVertex() {
-        return 1;
+    public Integer verticeAlvo(Integer atual) {
+        if (atual == vertice1)
+            return vertice2;
+        return vertice1;
     }
 }

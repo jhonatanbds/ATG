@@ -95,7 +95,7 @@ public abstract class GrafoBase {
             Integer atual = verticesOrdenados.get(i);
             Set<Aresta> arestas = vertices.get(atual);
             for (Aresta a : arestas) {
-                Integer targetVertex = a.getTargetVertex();
+                Integer targetVertex = a.verticeAlvo(atual);
                 am[i][verticesOrdenados.indexOf(targetVertex)] = a.getPeso();
             }
         }
@@ -147,7 +147,7 @@ public abstract class GrafoBase {
         while (!fila.isEmpty()) {
             element = fila.remove();
             i = element;
-            res += i + "\n";
+            res += i + " ";
             while (i <= numVertices) {
                 if (am[element][i] != 0 && visitado[i] == 0) {
                     fila.add(i);
@@ -156,7 +156,7 @@ public abstract class GrafoBase {
                 i++;
             }
         }
-        return res;
+        return res.trim();
     }
 
     public boolean connected() {
@@ -187,8 +187,11 @@ public abstract class GrafoBase {
     }
 
     public int getEdgeNumber() {
-        ////////////////// TODO ///////////////////
-        return 1;
+        int total = 0;
+        for (Integer v : vertices.keySet())
+            for (Aresta a : vertices.get(v))
+                total++;
+        return total;
     }
 
     public int getVertexNumber() {
@@ -225,7 +228,77 @@ public abstract class GrafoBase {
         return res;
     }
 
-    abstract boolean connected(GrafoBase graph);
+    int minDistance(int dist[], Boolean sptSet[])
+    {
+        // Initialize min value
+        int min = Integer.MAX_VALUE, min_index=-1;
+
+        for (int v = 0; v < this.numVertices; v++)
+            if (sptSet[v] == false && dist[v] <= min)
+            {
+                min = dist[v];
+                min_index = v;
+            }
+
+        return min_index;
+    }
+
+
+    void shortestPath(int src) {
+        ArrayList<Integer> verticesTemp = new ArrayList<Integer>(this.vertices.keySet());
+        Collections.sort(verticesTemp);
+        double[][] graph = getAM(verticesTemp);
+
+        int dist[] = new int[this.numVertices]; // The output array. dist[i] will hold
+        // the shortest distance from src to i
+
+        // sptSet[i] will true if vertex i is included in shortest
+        // path tree or shortest distance from src to i is finalized
+        Boolean sptSet[] = new Boolean[this.numVertices];
+
+        // Initialize all distances as INFINITE and stpSet[] as false
+        for (int i = 0; i < this.numVertices; i++)
+        {
+            dist[i] = Integer.MAX_VALUE;
+            sptSet[i] = false;
+        }
+
+        // Distance of source vertex from itself is always 0
+        dist[src] = 0;
+
+        // Find shortest path for all vertices
+        for (int count = 0; count < this.numVertices-1; count++) {
+            // Pick the minimum distance vertex from the set of vertices
+            // not yet processed. u is always equal to src in first
+            // iteration.
+            int u = minDistance(dist, sptSet);
+
+            // Mark the picked vertex as processed
+            sptSet[u] = true;
+
+            // Update dist value of the adjacent vertices of the
+            // picked vertex.
+            for (int v = 0; v < this.numVertices; v++)
+
+                // Update dist[v] only if is not in sptSet, there is an
+                // edge from u to v, and total weight of path from src to
+                // v through u is smaller than current value of dist[v]
+                if (!sptSet[v] && graph[u][v]!=0 &&
+                        dist[u] != Integer.MAX_VALUE &&
+                        dist[u]+graph[u][v] < dist[v])
+                    dist[v] = (int) (dist[u] + graph[u][v]);
+        }
+
+        // print the constructed distance array
+        printSolution(dist, this.numVertices);
+    }
+
+    void printSolution(int dist[], int n)
+    {
+        System.out.println("Vertex   Distance from Source");
+        for (int i = 0; i < this.numVertices; i++)
+            System.out.println(i+" tt "+dist[i]);
+    }
 
     public String shortestPath(GrafoBase graph, Integer head, Integer tail){
     	return "";
